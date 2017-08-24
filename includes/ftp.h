@@ -6,7 +6,7 @@
 /*   By: ymukmar <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 11:07:41 by ymukmar           #+#    #+#             */
-/*   Updated: 2017/08/24 16:08:01 by ymukmar          ###   ########.fr       */
+/*   Updated: 2017/08/24 17:18:18 by ymukmar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void		ftp_client_attempt(char *message);
 */
 
 int			ftp_server_init(char *port);
+void		ftp_process_input(char *request, int client_socket);
 void		ftp_connected_client(int client_socket, int socketfd);
 
 /*
