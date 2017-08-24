@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftp_client.c                                       :+:      :+:    :+:   */
+/*   ftp_server.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymukmar <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/24 11:06:52 by ymukmar           #+#    #+#             */
-/*   Updated: 2017/08/24 15:43:37 by ymukmar          ###   ########.fr       */
+/*   Created: 2017/08/24 15:20:46 by ymukmar           #+#    #+#             */
+/*   Updated: 2017/08/24 15:42:41 by ymukmar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftp.h"
 
-int			main(int argc, char **argv)
+int		main(int argc, char **argv, char **environ)
 {
-	int		socketfd;
-	char	*sendline;
-	
-	if (argc == 3)
+	int					socketfd;
+	int					client_socket;
+	int					client_size;
+	struct sockaddr_in	client;
+
+	if (argc == 2)
 	{
-		socketfd = ftp_init_client(argv[1], argv[2]);
+		g_environ = environ;	
+		socketfd = ftp_server_init(argv[1]);
+		client_size = sizeof(struct sockaddr_in);
 		while (1)
 		{
-			ft_putstr("YSERVER>>> ");
-			get_next_line(0, &sendline);
-			/*if (ft_strcmp("", &sendline) != 0)
-			  if (ftp_client_request(socketfd, sendline) == 0)
-			  return (1);*/
+			if ((client_socket = accept(socketfd, (struct sockaddr *)&client,\
+							(socklen_t *)&client_size)) > 0)
+			{
+				ftp_server_success("Client connected");
+			}
 		}
 	}
-	else
-		ftp_client_error("Error Usage: ./client [host] [port]");
 	return (0);
 }

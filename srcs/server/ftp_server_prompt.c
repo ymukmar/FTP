@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftp_client.c                                       :+:      :+:    :+:   */
+/*   ftp_server_prompt.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymukmar <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/24 11:06:52 by ymukmar           #+#    #+#             */
-/*   Updated: 2017/08/24 15:43:37 by ymukmar          ###   ########.fr       */
+/*   Created: 2017/08/24 15:40:47 by ymukmar           #+#    #+#             */
+/*   Updated: 2017/08/24 15:41:10 by ymukmar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftp.h"
 
-int			main(int argc, char **argv)
+void	ftp_server_error(char *message)
 {
-	int		socketfd;
-	char	*sendline;
-	
-	if (argc == 3)
-	{
-		socketfd = ftp_init_client(argv[1], argv[2]);
-		while (1)
-		{
-			ft_putstr("YSERVER>>> ");
-			get_next_line(0, &sendline);
-			/*if (ft_strcmp("", &sendline) != 0)
-			  if (ftp_client_request(socketfd, sendline) == 0)
-			  return (1);*/
-		}
-	}
-	else
-		ftp_client_error("Error Usage: ./client [host] [port]");
-	return (0);
+	ft_putstr(COLOR_RED);
+	ft_putendl(message);
+	ft_putstr(COLOR_RESET);
+}
+
+void	ftp_server_success(char *message)
+{
+	ft_putstr(COLOR_GREEN);
+	ft_putendl(message);
+	ft_putstr(COLOR_RESET);
+}
+
+void	ftp_server_attempt(char *message)
+{
+	ft_putstr(COLOR_YELLOW);
+	ft_putendl(message);
+	ft_putstr(COLOR_RESET);
 }

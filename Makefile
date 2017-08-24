@@ -6,7 +6,7 @@
 #    By: ymukmar <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/16 15:42:14 by ymukmar           #+#    #+#              #
-#    Updated: 2017/08/24 11:33:24 by ymukmar          ###   ########.fr        #
+#    Updated: 2017/08/24 15:32:57 by ymukmar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ LIB = -L ./libft -lft
 FLAGS = -Wall -Wextra -Werror
 LIBFT = libft/libft.a
 
-all: $(CLIENT) $(AUTHOR) $(LIBFT)
+all: $(CLIENT) $(SERVER) $(AUTHOR) $(LIBFT)
 
 $(CLIENT): $(CLIENT_SRC)
 	@$(CC) $(FLAGS) $(INCLUDE) $(CLIENT_SRC) $(LIB) -o $@

@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftp_client.c                                       :+:      :+:    :+:   */
+/*   ftp_server_init.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymukmar <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/24 11:06:52 by ymukmar           #+#    #+#             */
-/*   Updated: 2017/08/24 15:43:37 by ymukmar          ###   ########.fr       */
+/*   Created: 2017/08/24 15:31:17 by ymukmar           #+#    #+#             */
+/*   Updated: 2017/08/24 15:35:00 by ymukmar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftp.h"
 
-int			main(int argc, char **argv)
+int		ftp_server_init(char *port)
 {
-	int		socketfd;
-	char	*sendline;
-	
-	if (argc == 3)
-	{
-		socketfd = ftp_init_client(argv[1], argv[2]);
-		while (1)
-		{
-			ft_putstr("YSERVER>>> ");
-			get_next_line(0, &sendline);
-			/*if (ft_strcmp("", &sendline) != 0)
-			  if (ftp_client_request(socketfd, sendline) == 0)
-			  return (1);*/
-		}
-	}
-	else
-		ftp_client_error("Error Usage: ./client [host] [port]");
-	return (0);
+	int					socketfd;
+	int					portnum;
+	struct sockaddr_in	server;
+
+	portnum = ft_atoi(port);
+	socketfd = socket(PF_INET, SOCK_STREAM, IPPROTO_IP);
+	server.sin_family = AF_INET;
+	server.sin_port = htons(portnum);
+	server.sin_addr.s_addr = htonl(INADDR_ANY);
+	bind(socketfd, (const struct sockaddr *)&server, sizeof(server));
+	listen(socketfd, 50);
+	return (socketfd);
 }
