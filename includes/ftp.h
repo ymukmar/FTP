@@ -6,7 +6,7 @@
 /*   By: ymukmar <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 11:07:41 by ymukmar           #+#    #+#             */
-/*   Updated: 2017/08/24 15:39:41 by ymukmar          ###   ########.fr       */
+/*   Updated: 2017/08/24 16:08:01 by ymukmar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <netdb.h>
 # include <arpa/inet.h>
 
+# define BUFFER 300
 # define COLOR_RED "\x1b[31m"
 # define COLOR_GREEN "\x1b[32m"
 # define COLOR_YELLOW "\x1b[33m"
@@ -32,7 +33,7 @@ char		**g_environ;
 */
 
 int			ftp_init_client(char *host, char *port);
-int			ftp_client_request(int socket, char *line);
+int			ftp_client_request(int socketfd, char *line);
 char		*ftp_gethostaddr(char *host);
 
 /*
@@ -48,6 +49,7 @@ void		ftp_client_attempt(char *message);
 */
 
 int			ftp_server_init(char *port);
+void		ftp_connected_client(int client_socket, int socketfd);
 
 /*
 ** FTP_SERVER SUPPORT

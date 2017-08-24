@@ -6,7 +6,7 @@
 /*   By: ymukmar <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 15:20:46 by ymukmar           #+#    #+#             */
-/*   Updated: 2017/08/24 15:42:41 by ymukmar          ###   ########.fr       */
+/*   Updated: 2017/08/24 16:05:12 by ymukmar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,11 @@ int		main(int argc, char **argv, char **environ)
 							(socklen_t *)&client_size)) > 0)
 			{
 				ftp_server_success("Client connected");
+				ftp_connected_client(client_socket, socketfd);
 			}
 		}
 	}
+	else
+		ftp_server_error("Error: Usage ./server [port]");
 	return (0);
 }

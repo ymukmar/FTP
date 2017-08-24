@@ -6,7 +6,7 @@
 /*   By: ymukmar <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 11:06:52 by ymukmar           #+#    #+#             */
-/*   Updated: 2017/08/24 15:43:37 by ymukmar          ###   ########.fr       */
+/*   Updated: 2017/08/24 16:13:13 by ymukmar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int			main(int argc, char **argv)
 		{
 			ft_putstr("YSERVER>>> ");
 			get_next_line(0, &sendline);
-			/*if (ft_strcmp("", &sendline) != 0)
-			  if (ftp_client_request(socketfd, sendline) == 0)
-			  return (1);*/
+			if (ft_strcmp("", sendline) != 0)
+				if (ftp_client_request(socketfd, sendline) == 0)
+					return (1);
 		}
 	}
 	else

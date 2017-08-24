@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftp_client_request.c                               :+:      :+:    :+:   */
+/*   ftp_connected_client.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymukmar <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/24 15:19:56 by ymukmar           #+#    #+#             */
-/*   Updated: 2017/08/24 16:34:38 by ymukmar          ###   ########.fr       */
+/*   Created: 2017/08/24 15:51:32 by ymukmar           #+#    #+#             */
+/*   Updated: 2017/08/24 16:32:37 by ymukmar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftp.h"
 
-int		ftp_client_request(int socketfd, char *line)
+void	ftp_connected_client(int client_socket, int socketfd)
 {
-	char	**args;
-	char	server_res[BUFFER];
+	pid_t	pid;
+	char	request[BUFFER];
 
-	args = ft_strsplit(line, ' ');
-	ft_bzero(server_res, BUFFER);
-	write(socketfd, line, ft_strlen(line));
-	read(socketfd, server_res, BUFFER);
-	ft_putendl(server_res);
-	return (1);
+	pid = fork();
+	socketfd = 0;
+	if (pid == 0)
+	{
+		while (read(client_socket, request, BUFFER))
+		{
+			printf("Cliend [%d] asked for %s\n", client_socket, request);
+			write(client_socket, "Request rcv", 11);
+			ft_bzero(request, BUFFER);
+		}
+		ftp_server_error("Client disconnected");
+	}
 }
