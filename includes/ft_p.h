@@ -41,6 +41,7 @@ char			**g_env;
 
 int             ftp_init_client(char *host, char *port);
 char            *ftp_gethostaddr(char *addr);
+int             ftp_client_request(int socketfd, char *sendline);
 
 /*
 ** FTP CLIENT SUPPORT
