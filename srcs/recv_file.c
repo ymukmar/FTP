@@ -6,13 +6,13 @@
 /*   By: ymukmar <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/31 16:35:32 by ymukmar           #+#    #+#             */
-/*   Updated: 2017/08/31 16:35:35 by ymukmar          ###   ########.fr       */
+/*   Updated: 2017/09/08 15:24:58 by ymukmar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_p.h"
 
-int		len_tokens(char **tokens)
+static int		len_tokens(char **tokens)
 {
 	int c;
 
@@ -25,7 +25,7 @@ int		len_tokens(char **tokens)
 	return (c);
 }
 
-void	sock_iter(int sock_fd, int fd)
+static void		sock_iter(int sock_fd, int fd)
 {
 	size_t	read_size;
 	size_t	file_size;
@@ -53,7 +53,7 @@ void	sock_iter(int sock_fd, int fd)
 	}
 }
 
-int		file_valid(sock_fd, fd)
+int				file_valid(sock_fd, fd)
 {
 	if (fd < 0)
 	{

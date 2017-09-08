@@ -6,7 +6,7 @@
 #    By: ymukmar <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/16 15:42:14 by ymukmar           #+#    #+#              #
-#    Updated: 2017/09/08 13:05:24 by ymukmar          ###   ########.fr        #
+#    Updated: 2017/09/08 14:39:01 by ymukmar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,13 +41,12 @@ $(AUTHOR):
 
 $(LIBFT):
 	@make -C ./libft
+	@make clean -C ./libft
 
 clean:
-	@make clean -C ./libft
 	@rm $(CLIENT) $(SERVER)
 
 fclean: clean
-	@make fclean -C ./libft
 
 re: fclean all
 

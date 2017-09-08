@@ -6,13 +6,13 @@
 /*   By: ymukmar <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/31 16:36:11 by ymukmar           #+#    #+#             */
-/*   Updated: 2017/08/31 16:36:14 by ymukmar          ###   ########.fr       */
+/*   Updated: 2017/09/08 14:36:55 by ymukmar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_p.h"
 
-void    ftp_cat(void)
+void	ftp_cat(void)
 {
 	int		fd;
 
@@ -26,7 +26,7 @@ void    ftp_cat(void)
 		ft_putendl("Open failed");
 }
 
-int	main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	int				socketfd;
 	char			*sendline;
