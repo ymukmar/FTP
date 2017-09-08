@@ -80,8 +80,8 @@ void	ft_cd(char **args, int fd)
 		ch = chdir(args[1]);
 	if (ch == -1)
 	{
-		write(fd, "ERROR: no such file or directory\n", BUFFER);
+		ftp_print_error("ERROR: no such file or directory", fd);
 		return ;
 	}
-	ft_putendl_fd("SUCCESS", fd);
+	ftp_print_success("Directory changed", fd);
 }

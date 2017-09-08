@@ -6,7 +6,7 @@
 #    By: nsikhosa <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/29 14:06:19 by nsikhosa          #+#    #+#              #
-#    Updated: 2017/06/10 14:44:58 by nsikhosa         ###   ########.fr        #
+#    Updated: 2017/09/01 12:48:09 by ymukmar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRC = srcs/ft_atoi.c srcs/ft_isalpha.c srcs/ft_strcmp.c srcs/ft_strcpy.c \
 	  srcs/ft_strmapi.c srcs/ft_strsub.c srcs/ft_strtrim.c srcs/ft_putnbr.c \
 	  srcs/ft_putchar_fd.c srcs/ft_putstr_fd.c srcs/ft_putnbr_fd.c \
 	  srcs/ft_putendl_fd.c srcs/ft_strjoin.c srcs/ft_itoa.c srcs/ft_strdel.c \
-	  srcs/ft_strsplit.c srcs/get_next_line.c
+	  srcs/ft_strsplit.c srcs/get_next_line.c srcs/ft_cat.c
 LFLAGS = ar rcs
 NAME = libft.a
 OBJ = ft_atoi.o ft_isalpha.o ft_strcmp.o ft_strcpy.o ft_strlen.o \
@@ -39,7 +39,8 @@ OBJ = ft_atoi.o ft_isalpha.o ft_strcmp.o ft_strcpy.o ft_strlen.o \
 	  ft_strnequ.o ft_putendl.o ft_striter.o ft_striteri.o ft_strnew.o \
 	  ft_strmap.o ft_strmapi.o ft_strsub.o ft_strtrim.o ft_putnbr.o \
 	  ft_putchar_fd.o ft_putstr_fd.o ft_putnbr_fd.o ft_putendl_fd.o \
-	  ft_strjoin.o ft_itoa.o ft_strdel.o ft_strsplit.o get_next_line.o
+	  ft_strjoin.o ft_itoa.o ft_strdel.o ft_strsplit.o get_next_line.o\
+	  ft_cat.o
 
 all: $(NAME)
 

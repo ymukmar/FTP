@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ftp_valid_args.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymukmar <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/31 16:35:56 by ymukmar           #+#    #+#             */
-/*   Updated: 2017/09/08 12:39:58 by ymukmar          ###   ########.fr       */
+/*   Created: 2017/09/08 12:41:31 by ymukmar           #+#    #+#             */
+/*   Updated: 2017/09/08 12:41:37 by ymukmar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_p.h"
 
-int		main(int argc, char **argv, char **environ)
+int		valid_args(char **args, int fd)
 {
-	int				socketfd;
-	int				clientfd;
+	char buff[SEND_BUFF];
 
-	if (argc == 2)
+	if (ft_strcmp(args[0], "cd") == 0)
 	{
-		g_env = environ;
-		socketfd = ftp_server_init(argv[1]);
-		while (1)
-		{
-			clientfd = accept(socketfd, (struct sockaddr*)NULL, NULL);
-			ftp_print_success("Client Connected", 1);
-			ftp_conn_client(clientfd, socketfd);
-		}
+		ft_cd(args, fd);
+		return (1);
 	}
-	else
-		ftp_print_error("ERROR Incorrect Usage", 1);
+	if (ft_strcmp(args[0], "put") == 0)
+	{
+		recv_file(fd, args[1]);
+		return (1);
+	}
+	if (ft_strcmp(args[0], "get") == 0)
+	{
+		if (send_file(fd, args[1]) == -1)
+		{
+			read(fd, buff, SEND_BUFF);
+			ftp_print_error("Error: GET failed", fd);
+		}
+		return (1);
+	}
 	return (0);
 }

@@ -28,10 +28,8 @@
 # define COLOR_YELLOW "\x1b[33m"
 # define COLOR_RESET "\x1b[0m"
 
-# define BUFFER 300
-# define SEND_BUFF 256
-
-typedef struct sockaddr_in	t_sockaddr_in;
+# define BUFFER 800
+# define SEND_BUFF 500
 
 char			**g_env;
 
@@ -44,12 +42,13 @@ char            *ftp_gethostaddr(char *addr);
 int             ftp_client_request(int socketfd, char *sendline);
 
 /*
-** FTP CLIENT SUPPORT
+** FTP SERVER
 */
 
-void            ftp_client_success(char *message);
-void            ftp_client_attempt(char *message);
-void            ftp_client_error(char *message);
+int		        ftp_server_init(char *port);
+void	        ftp_conn_client(int clientfd, int socketfd);
+void	        ftp_exec(char *in, int fd);
+int		        valid_args(char **args, int fd);
 
 /*
 ** FTP
@@ -61,5 +60,13 @@ void			ft_cd(char **args, int fd);
 int				send_file(int sock_fd, char *file);
 void			recv_file(int sock_fd, char *file);
 int				args_ok(int args, char *usage, int num, char **argv);
+
+/*
+** FTP SUPPORT
+*/
+
+void            ftp_print_success(char *message, int fd);
+void            ftp_print_attempt(char *message, int fd);
+void            ftp_print_error(char *message, int fd);
 
 #endif

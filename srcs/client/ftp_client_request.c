@@ -26,7 +26,7 @@ static int	ftp_quit(char **args, int socketfd)
     if (ft_strcmp(args[0], "quit") == 0)
     {
         write(socketfd, args[0], ft_strlen(args[0]));
-        ftp_client_success("GoodBye...");
+        ftp_print_success("GoodBye...", 1);
         close(socketfd);
         return (1);
     }
@@ -53,7 +53,7 @@ int	ftp_client_request(int socketfd, char *sendline)
         ft_putstr(server_res);
     }
     else
-        ftp_client_error("Invalid command");
+        ftp_print_error("Invalid command", 1);
     return (1);
 }
 

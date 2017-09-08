@@ -6,7 +6,7 @@
 #    By: ymukmar <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/16 15:42:14 by ymukmar           #+#    #+#              #
-#    Updated: 2017/08/31 16:34:29 by ymukmar          ###   ########.fr        #
+#    Updated: 2017/09/08 13:05:24 by ymukmar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,10 +30,10 @@ LIBFT = libft/libft.a
 
 all: $(CLIENT) $(SERVER) $(AUTHOR) $(LIBFT)
 
-$(CLIENT): $(CLIENT_SRC)
+$(CLIENT): $(CLIENT_SRC) $(SHARED_SRC)
 	@$(CC) $(FLAGS) $(INCLUDE) $(CLIENT_SRC) $(SHARED_SRC) $(LIB) -o $@
 
-$(SERVER): $(SERVER_SRC)
+$(SERVER): $(SERVER_SRC) $(SHARED_SRC)
 	@$(CC) $(INCLUDE) $(SERVER_SRC) $(SHARED_SRC) $(LIB) -o $@
 
 $(AUTHOR):

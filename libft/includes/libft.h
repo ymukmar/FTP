@@ -6,7 +6,7 @@
 /*   By: nsikhosa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/29 13:38:53 by nsikhosa          #+#    #+#             */
-/*   Updated: 2017/06/22 16:21:40 by nsikhosa         ###   ########.fr       */
+/*   Updated: 2017/09/01 11:58:45 by ymukmar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ char	*ft_itoa(int n);
 void	ft_strdel(char **as);
 char	**ft_strsplit(char const *s, char c);
 int		get_next_line(const int fd, char **line);
+int		ft_cat(int fd, int ofd);
 
 #endif

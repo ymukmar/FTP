@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymukmar <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: nsikhosa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/31 16:34:52 by ymukmar           #+#    #+#             */
-/*   Updated: 2017/08/31 16:34:55 by ymukmar          ###   ########.fr       */
+/*   Created: 2017/05/29 13:38:53 by nsikhosa          #+#    #+#             */
+/*   Updated: 2017/09/01 11:58:45 by ymukmar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ char	*ft_itoa(int n);
 void	ft_strdel(char **as);
 char	**ft_strsplit(char const *s, char c);
 int		get_next_line(const int fd, char **line);
+int		ft_cat(int fd, int ofd);
 
 #endif

@@ -25,10 +25,10 @@ int		ftp_init_client(char *host, char *port)
 	server.sin_family = AF_INET;
 	server.sin_port = htons(portnum);
 	server.sin_addr.s_addr = inet_addr(hostaddr);
-	ftp_client_attempt("Attempting Server connection...");
+	ftp_print_attempt("Attempting Server connection...", 1);
 	if (connect(socketfd, (struct sockaddr *)&server, sizeof(server)) < 0)
 	{
-		ftp_client_error("Error: Failed to Connect to server");
+		ftp_print_error("Error: Failed to Connect to server", 1);
 		exit(EXIT_FAILURE);
 	}
 	free(hostaddr);

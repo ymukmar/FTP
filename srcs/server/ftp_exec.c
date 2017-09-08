@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ftp_exec.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymukmar <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/31 16:35:56 by ymukmar           #+#    #+#             */
-/*   Updated: 2017/09/08 12:39:58 by ymukmar          ###   ########.fr       */
+/*   Created: 2017/09/08 12:40:18 by ymukmar           #+#    #+#             */
+/*   Updated: 2017/09/08 12:40:28 by ymukmar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_p.h"
 
-int		main(int argc, char **argv, char **environ)
+void	ftp_exec(char *in, int fd)
 {
-	int				socketfd;
-	int				clientfd;
+	char	*param[2];
+	pid_t	p_id;
+	char	**args;
 
-	if (argc == 2)
+	args = ft_strsplit(in, ' ');
+    p_id = fork();
+	if (valid_args(args, fd))
+		return ;
+	if (ft_strcmp(in, "ls") == 0)
+		param[0] = "/bin/ls";
+	else if (ft_strcmp(in, "pwd") == 0)
+		param[0] = "/bin/pwd";
+	param[1] = NULL;
+    if (p_id == 0)
 	{
-		g_env = environ;
-		socketfd = ftp_server_init(argv[1]);
-		while (1)
-		{
-			clientfd = accept(socketfd, (struct sockaddr*)NULL, NULL);
-			ftp_print_success("Client Connected", 1);
-			ftp_conn_client(clientfd, socketfd);
-		}
+		dup2(fd, 1);
+		execv(param[0], param);
 	}
-	else
-		ftp_print_error("ERROR Incorrect Usage", 1);
-	return (0);
 }

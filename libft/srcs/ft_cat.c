@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftp_client_prompt.c                                :+:      :+:    :+:   */
+/*   ft_cat.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymukmar <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/24 11:52:29 by ymukmar           #+#    #+#             */
-/*   Updated: 2017/08/24 11:57:28 by ymukmar          ###   ########.fr       */
+/*   Created: 2017/09/01 11:56:22 by ymukmar           #+#    #+#             */
+/*   Updated: 2017/09/01 12:47:20 by ymukmar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_p.h"
+#include "libft.h"
 
-void	ftp_client_error(char *message)
+int		ft_cat(int fd, int ofd)
 {
-	ft_putstr(COLOR_RED);
-	ft_putendl(message);
-	ft_putstr(COLOR_RESET);
-}
+	int		bytes;
+	char	buffer[512];
 
-void	ftp_client_success(char *message)
-{
-	ft_putstr(COLOR_GREEN);
-	ft_putendl(message);
-	ft_putstr(COLOR_RESET);
-}
-
-void	ftp_client_attempt(char *message)
-{
-	ft_putstr(COLOR_YELLOW);
-	ft_putendl(message);
-	ft_putstr(COLOR_RESET);
+	while ((bytes = read(fd, buffer, sizeof(buffer))))
+	{
+		if (bytes < 0)
+			return (-1);
+		write(ofd, &buffer, bytes);
+	}
+	return (0);
 }
